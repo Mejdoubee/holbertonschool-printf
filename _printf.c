@@ -103,6 +103,44 @@ int handleWith_d_i(va_list args)
 }
 
 /**
+* _pow - Calculate num ** d
+* @num: int
+* @d: int
+* Return: int
+*/
+int _pow(int num, int d)
+{
+	int sum = num, i;
+
+	for (i = 0; i < d; i++)
+		sum *= num;
+	return (sum);
+}
+
+/**
+* handleWith_di - handle int and double
+* @args: args
+* Return: int
+*/
+int handleWith_di(va_list args)
+{
+	int n = va_arg(args, int), count = 0, d = 0, tmp;
+
+	if (n < 0)
+		_putchar('-'), n *= -1, count++;
+	if (n < 10 && n >= 0)
+	{
+		_putchar(n + '0');
+		return (count + 1);
+	}
+	for (tmp = n; tmp > 9; d++)
+		tmp /= 10;
+	for (; d > 0; d--, count++)
+		_putchar(((n % _pow(10, d)) / _pow(10, d - 1)) + '0');
+	_putchar((n % 10) + '0');
+	return (count + 1);
+}
+/**
 * _printf - function that produces output according to a format
 * @format: pointer to string
 * Return: the  number of characters printed
@@ -131,7 +169,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 				total += handleWith_s(args);
 			else if (*format == 'i' || *format == 'd')
-				total += handleWith_d_i(args);
+				total += handleWith_di(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
