@@ -46,7 +46,9 @@ int handleWith_s(va_list args)
 {
 	char *s = va_arg(args, char *);
 	int count = 0;
-
+	
+	if (s == NULL)
+		s = "(null)";
 	while (*s)
 	{
 		_putchar(*s);
@@ -70,7 +72,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	while (*format && format)
+	while (*format)
 	{
 		if (*format == '%')
 		{
