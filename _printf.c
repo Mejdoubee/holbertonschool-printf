@@ -90,7 +90,10 @@ int _printf(const char *format, ...)
 				total += 2;
 			}
 			else
-				format--;
+			{
+				va_end(args);
+				return (-1);
+			}
 		}
 		else
 		{
