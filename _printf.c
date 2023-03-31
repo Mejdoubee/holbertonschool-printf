@@ -23,9 +23,9 @@ int _putchar(char c)
 * 3) the char in taken from the var argument list using va_arg \
 						cast to char , and print using _putchar
 */
-int handleWith_c(va_list *args)
+int handleWith_c(va_list args)
 {
-	char c = (char)va_arg(*args, int);
+	char c = (char)va_arg(args, int);
 
 	_putchar(c);
 	return (1);
@@ -42,9 +42,9 @@ int handleWith_c(va_list *args)
 * 3) the string is taken from the variable argument list using va_arg \
 *			and print every single char in the string using _putchar
 */
-int handleWith_s(va_list *args)
+int handleWith_s(va_list args)
 {
-	char *s = va_arg(*args, char *);
+	char *s = va_arg(args, char *);
 	int count = 0;
 
 	while (*s)
@@ -70,17 +70,20 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	while (*format)
+	while (*format && format)
 	{
 		if (*format == '%')
 		{
 			format++;
 			if (*format == '\0')
+			{
+				va_end(args);
 				return (-1);
+			}
 			else if (*format == 'c')
-				total += handleWith_c(&args);
+				total += handleWith_c(args);
 			else if (*format == 's')
-				total += handleWith_s(&args);
+				total += handleWith_s(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
