@@ -90,7 +90,7 @@ int _printf(const char *format, ...)
 				total += 2;
 			}
 			else
-				return (-1);
+				format--;
 		}
 		else
 		{
