@@ -67,39 +67,27 @@ int _printf(const char *format, ...)
 	va_list args;
 	int total = 0;
 
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
-
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c')
+			if (*format == '\0')
+				return (-1);
+			else if (*format == 'c')
 				total += handleWith_c(&args);
 			else if (*format == 's')
 				total += handleWith_s(&args);
 			else if (*format == '%')
-			{
-				_putchar('%');
-				total++;
-			}
-			else if (*format != '\0')
-			{
-				_putchar('%');
-				_putchar(*format);
-				total += 2;
-			}
+				_putchar('%'), total++;
 			else
-			{
-				va_end(args);
-				return (-1);
-			}
+				_putchar('%'), _putchar(*format), total += 2;
 		}
 		else
-		{
-			_putchar(*format);
-			total++;
-		}
+			_putchar(*format), total++;
 		format++;
 	}
 	va_end(args);
