@@ -66,10 +66,10 @@ int handleWith_s(va_list args)
 */
 int handleWith_d_i(va_list args)
 {
-	int n = va_arg(args, int);
+	long int n = va_arg(args, int);
 	int count = 0;
-	char buffer[12];
-	char *ptr = &buffer[11];
+	char buffer[13];
+	char *ptr = &buffer[12];
 	*ptr = '\0';
 	ptr--;
 
@@ -108,9 +108,10 @@ int handleWith_d_i(va_list args)
 * @d: int
 * Return: int
 */
-int _pow(int num, int d)
+long int _pow(int num, int d)
 {
-	int sum = num, i;
+	long int sum = num;
+	int i;
 
 	for (i = 0; i < d; i++)
 		sum *= num;
@@ -124,21 +125,25 @@ int _pow(int num, int d)
 */
 int handleWith_di(va_list args)
 {
-	int n = va_arg(args, int), count = 0, d = 0, tmp;
+	long int n = va_arg(args, int), tmp;
+	int count = 0, d = 0;
 
 	if (n < 0)
-		_putchar('-'), n *= -1, count++;
-	if (n < 10 && n >= 0)
+		_putchar('-'), n = -n, count++;
+	if (n < 10)
 	{
 		_putchar(n + '0');
 		return (count + 1);
 	}
 	for (tmp = n; tmp > 9; d++)
-		tmp /= 10;
-	for (; d > 0; d--, count++)
-		_putchar(((n % _pow(10, d)) / _pow(10, d - 1)) + '0');
-	_putchar((n % 10) + '0');
-	return (count + 1);
+		tmp = tmp / 10;
+	for (; d > 0; count++, d--)
+		if (d > 8)
+			_putchar((n / _pow(10, d - 1)) + '0');
+		else
+			_putchar(((n % _pow(10, d)) / _pow(10, d - 1)) + '0');
+	_putchar((n % 10) + '0'), count++;
+	return (count);
 }
 /**
 * _printf - function that produces output according to a format
