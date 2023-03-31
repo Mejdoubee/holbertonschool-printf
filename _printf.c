@@ -174,7 +174,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 				total += handleWith_s(args);
 			else if (*format == 'i' || *format == 'd')
-				total += handleWith_di(args);
+				total += handleWith_d_i(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
