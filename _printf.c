@@ -59,6 +59,50 @@ int handleWith_s(va_list args)
 }
 
 /**
+* handleWith_d_i - function that handles the 'i and d' format (signed integer)
+* @args: pointer to the current argument in the variable arg list
+* Return: count of printed char
+*
+*/
+int handleWith_d_i(va_list args)
+{
+	int n = va_arg(args, int);
+	int count = 0;
+	char buffer[12];
+	char *ptr = &buffer[11];
+	*ptr = '\0';
+	ptr--;
+
+	if (n == 0)
+	{
+	*ptr = '0';
+	_putchar(*ptr);
+	return (1);
+	}
+
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+		count++;
+	}
+	while (n > 0)
+	{
+	*ptr = (n % 10) + '0';
+	n /= 10;
+	ptr--;
+	count++;
+	}
+	ptr++;
+	while (*ptr)
+	{
+	_putchar(*ptr);
+	ptr++;
+	}
+	return (count);
+}
+
+/**
 * _printf - function that produces output according to a format
 * @format: pointer to string
 * Return: the  number of characters printed
@@ -86,6 +130,8 @@ int _printf(const char *format, ...)
 				total += handleWith_c(args);
 			else if (*format == 's')
 				total += handleWith_s(args);
+			else if (*format == 'i' || *format == 'd')
+				total += handleWith_d_i(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
