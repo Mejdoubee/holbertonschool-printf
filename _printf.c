@@ -16,44 +16,44 @@ int _putchar(char c)
 /**
 * handleWith_c - function that handles the 'c' format (single char)
 * @args: pointer to the current argument in the variable arg list
-* @total: total is updated every time the char is printed \
-			is *_/pointer/_* to the "char" 'count'
+* Return: count of printed char
 * 1) This function prints a single character passed as an argument
 * 2) increments the pointer total for track the total \
 						number of characters printed
 * 3) the char in taken from the var argument list using va_arg \
 						cast to char , and print using _putchar
 */
-void handleWith_c(va_list *args, int *total)
+int handleWith_c(va_list *args)
 {
 	char c = (char)va_arg(*args, int);
 
 	_putchar(c);
-	(*total)++;
+	return (1);
 }
 
 
 /**
 * handleWith_s - function that handles the 's' format (string)
 * @args: pointer to the current argument in the variable arg list
-* @total: total is updated every time the char is printed \
-	is *_/pointer/_* to the "char" 'count'
+* Return: count of printed char
 * 1) This function prints a string passed as an argument
 * 2) increments the pointer total for track the total \
 *						number of characters printed
 * 3) the string is taken from the variable argument list using va_arg \
 *			and print every single char in the string using _putchar
 */
-void handleWith_s(va_list *args, int *total)
+int handleWith_s(va_list *args)
 {
 	char *s = va_arg(*args, char *);
+	int count = 0;
 
 	while (*s)
 	{
-	_putchar(*s);
-	(*total)++;
-	s++;
+		_putchar(*s);
+		count++;
+		s++;
 	}
+	return (count);
 }
 
 /**
@@ -75,24 +75,22 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			if (*format == 'c')
-			{
-				handleWith_c(&args, &total);
-			}
+				total += handleWith_c(&args);
 			else if (*format == 's')
-			{
-				handleWith_s(&args, &total);
-			}
+				total += handleWith_s(&args);
 			else if (*format == '%')
 			{
 				_putchar('%');
 				total++;
 			}
-			else
+			else if (*format != '\0')
 			{
 				_putchar('%');
 				_putchar(*format);
 				total += 2;
 			}
+			else
+				return (-1);
 		}
 		else
 		{
