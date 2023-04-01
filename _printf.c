@@ -110,10 +110,10 @@ int handleWith_d_i(va_list args)
 */
 int handleWith_b(va_list args)
 {
-	unsigned long n = va_arg(args, unsigned long);
+	unsigned long n = va_arg(args, unsigned int);
 	int count = 0;
-	char buffer[33];
-	char *ptr = &buffer[32];
+	char buffer[34];
+	char *ptr = &buffer[33];
 
 	*ptr = '\0';
 	ptr--;
