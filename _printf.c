@@ -68,16 +68,16 @@ int handleWith_d_i(va_list args)
 {
 	long int n = va_arg(args, int);
 	int count = 0;
-	char buffer[13];
-	char *ptr = &buffer[12];
+	char buffer[12];
+	char *ptr = &buffer[11];
 	*ptr = '\0';
 	ptr--;
 
 	if (n == 0)
 	{
-	*ptr = '0';
-	_putchar(*ptr);
-	return (1);
+		*ptr = '0';
+		_putchar(*ptr);
+		return (1);
 	}
 
 	if (n < 0)
@@ -88,16 +88,16 @@ int handleWith_d_i(va_list args)
 	}
 	while (n > 0)
 	{
-	*ptr = (n % 10) + '0';
-	n /= 10;
-	ptr--;
-	count++;
+		*ptr = (n % 10) + '0';
+		n /= 10;
+		ptr--;
+		count++;
 	}
 	ptr++;
 	while (*ptr)
 	{
-	_putchar(*ptr);
-	ptr++;
+		_putchar(*ptr);
+		ptr++;
 	}
 	return (count);
 }
@@ -172,7 +172,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 				total += handleWith_s(args);
 			else if (*format == 'i' || *format == 'd')
-				total += handleWith_di(args);
+				total += handleWith_d_i(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
