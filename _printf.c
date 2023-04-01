@@ -112,8 +112,10 @@ long int _pow(int num, int d)
 {
 	long int sum = num;
 	int i;
-
-	for (i = 0; i < d; i++)
+	
+	if (d == 0)
+		return (1);
+	for (i = 1; i < d; i++)
 		sum *= num;
 	return (sum);
 }
@@ -136,13 +138,9 @@ int handleWith_di(va_list args)
 		return (count + 1);
 	}
 	for (tmp = n; tmp > 9; d++)
-		tmp = tmp / 10;
-	for (; d > 0; count++, d--)
-		if (d > 8)
-			_putchar((n / _pow(10, d - 1)) + '0');
-		else
-			_putchar(((n % _pow(10, d)) / _pow(10, d - 1)) + '0');
-	_putchar((n % 10) + '0'), count++;
+		tmp /= 10;
+	for (; d >= 0; count++, d--)
+		_putchar(((n % _pow(10, d + 1)) / _pow(10, d)) + '0');
 	return (count);
 }
 /**
@@ -174,7 +172,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 				total += handleWith_s(args);
 			else if (*format == 'i' || *format == 'd')
-				total += handleWith_d_i(args);
+				total += handleWith_di(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
