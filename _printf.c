@@ -112,7 +112,7 @@ long int _pow(int num, int d)
 {
 	long int sum = num;
 	int i;
-	
+
 	if (d == 0)
 		return (1);
 	for (i = 1; i < d; i++)
