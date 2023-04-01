@@ -103,6 +103,44 @@ int handleWith_d_i(va_list args)
 }
 
 /**
+* handleWith_b - function that handles the 'b' format (dec to bin)
+* @args: pointer to the current argument in the variable  arg list
+* Return: count of printed char
+*
+*/
+int handleWith_b(va_list args)
+{
+	unsigned long n = va_arg(args, unsigned long);
+	int count = 0;
+	char buffer[33];
+	char *ptr = &buffer[32];
+
+	*ptr = '\0';
+	ptr--;
+
+	if (n == 0)
+	{
+		*ptr = '0';
+		_putchar(*ptr);
+		return (1);
+	}
+	while (n > 0)
+	{
+		*ptr = (n % 2) + '0';
+		n /= 2;
+		ptr--;
+		count++;
+	}
+	ptr++;
+	while (*ptr)
+	{
+		_putchar(*ptr);
+		ptr++;
+	}
+	return (count);
+}
+
+/**
 * _pow - Calculate num ** d
 * @num: int
 * @d: int
@@ -173,6 +211,8 @@ int _printf(const char *format, ...)
 				total += handleWith_s(args);
 			else if (*format == 'i' || *format == 'd')
 				total += handleWith_d_i(args);
+			else if (*format == 'b')
+				total += handleWith_b(args);
 			else if (*format == '%')
 				_putchar('%'), total++;
 			else
