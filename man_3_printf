@@ -1,0 +1,37 @@
+.TH _PRINTF 3 "1 April 2023" "Version 1.0" "_printf manual"
+.SH NAME
+_printf \- formatted output conversion
+.SH SYNOPSIS
+.B #include "main.h"
+.PP
+.B int _printf(const char *format, ...);
+.SH DESCRIPTION
+The
+.B _printf
+function produces output according to a format string and a variable number of arguments.
+.PP
+The format string consists of ordinary characters (excluding the percent '%' character), which are copied directly to the output, and conversion specifications, introduced by a '%' character. Each conversion specification is replaced by the appropriate characters based on the corresponding argument.
+.PP
+The available conversion specifiers are:
+.TP
+.B %c
+Prints a character.
+.TP
+.B %s
+Prints a string.
+.TP
+.B %d
+Prints a signed decimal integer.
+.TP
+.B %i
+Prints a signed integer.
+.TP
+.B %%
+Prints a literal '%' character.
+.SH RETURN VALUE
+The function returns the number of characters printed (excluding the null byte used to end output to strings). If an error occurs, it returns -1.
+.SH SEE ALSO
+.BR printf(3)
+.SH AUTHOR
+Ismail Mejdoub.
+
