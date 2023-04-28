@@ -88,3 +88,18 @@ int handleWith_d_i(va_list args)
 	}
 	return (count);
 }
+
+/**
+* handleWith_percent - handles the percent specifier
+* @args: the argument list
+* Return: the number of characters printed (1 in this case)
+*
+*/
+
+int handleWith_percent(va_list args)
+{
+	(void)args;
+
+	_putchar('%');
+	return (1);
+}
