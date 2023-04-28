@@ -10,8 +10,8 @@
 
 /**
 * struct handleWith - Structure for handling format specifiers
-* @hand: Format specifier character
-* @f: Function pointer to the corresponding handler function for\
+* @handled_format: Format specifier character
+* @handledfunction: Function pointer to the corresponding handler function for\
 *						the format specifier
 *
 */
@@ -19,7 +19,7 @@ typedef struct handleWith
 {
 	char handled_format;
 	int (*handledfunction)(va_list args);
-}handleWith_t;
+} handleWith_t;
 
 
 int _printf(const char *format, ...);
@@ -32,6 +32,6 @@ int handleWith_o(va_list args);
 int handleWith_x(va_list args);
 int handleWith_X(va_list args);
 int handleWith_b(va_list args);
-extern handleWith_t array[];
+int handleWith_percent(va_list args);
 
 #endif
