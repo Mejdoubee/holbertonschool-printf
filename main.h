@@ -17,9 +17,9 @@
 */
 typedef struct handleWith
 {
-	char hand;
-	int (*f)(va_list args);
-} handleWith_t;
+	char handled_format;
+	int (*handledfunction)(va_list args);
+}handleWith_t;
 
 
 int _printf(const char *format, ...);
@@ -32,5 +32,6 @@ int handleWith_o(va_list args);
 int handleWith_x(va_list args);
 int handleWith_X(va_list args);
 int handleWith_b(va_list args);
+extern handleWith_t array[];
 
 #endif
