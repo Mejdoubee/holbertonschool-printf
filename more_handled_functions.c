@@ -196,7 +196,6 @@ int handleWith_b(va_list args)
 		*ptr = (n % 2) + '0';
 		n /= 2;
 		ptr--;
-		count++;
 	}
 	ptr++;
 	while (*ptr)
