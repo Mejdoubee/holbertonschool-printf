@@ -178,7 +178,7 @@ int handleWith_b(va_list args)
 		return (1);
 	}
 
-	while ((n >> count) != '\0')
+	while ((n >> count) != 0)
 	{
 		count++;
 	}
