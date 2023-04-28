@@ -11,7 +11,8 @@
 /**
 * struct handleWith - Structure for handling format specifiers
 * @hand: Format specifier character
-* @f: Function pointer to the corresponding handler function for the format specifier
+* @f: Function pointer to the corresponding handler function for\
+*						the format specifier
 *
 */
 typedef struct handleWith
