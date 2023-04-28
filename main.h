@@ -6,6 +6,7 @@
 #include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
 * struct handleWith - Structure for handling format specifiers
@@ -21,5 +22,14 @@ typedef struct handleWith
 
 
 int _printf(const char *format, ...);
+int _putchar(char c);
+int handleWith_d_i(va_list args);
+int handleWith_s(va_list args);
+int handleWith_c(va_list args);
+int handleWith_u(va_list args);
+int handleWith_o(va_list args);
+int handleWith_x(va_list args);
+int handleWith_X(va_list args);
+int handleWith_b(va_list args);
 
 #endif
