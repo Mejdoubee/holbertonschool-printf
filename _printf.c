@@ -1,5 +1,19 @@
 #include "main.h"
 
+static handleWith_t array[] = {
+	{'c', handleWith_c},
+	{'s', handleWith_s},
+	{'i', handleWith_d_i},
+	{'d', handleWith_d_i},
+	{'u', handleWith_u},
+	{'x', handleWith_x},
+	{'X', handleWith_X},
+	{'o', handleWith_o},
+	{'b', handleWith_b},
+	{'%', handleWith_percent},
+	{'\0', NULL}
+};
+
 /**
 * _printf - function that produces output according to a format
 * @format: pointer to string
@@ -14,9 +28,7 @@ int _printf(const char *format, ...)
 
 
 	if (format == NULL)
-	{
 		return (-1);
-	}
 	va_start(args, format);
 	while (*format)
 	{
@@ -28,16 +40,11 @@ int _printf(const char *format, ...)
 				va_end(args);
 				return (-1);
 			}
-			if (*format == '%')
-			{
-				_putchar('%');
-				total++;
-			}
 			else
 			{
-			handles = array;
-			while (handles->handled_format)
-			{
+				handles = array;
+				while (handles->handled_format)
+				{
 					if (handles->handled_format == *format)
 					{
 						total += handles->handledfunction(args);
@@ -46,15 +53,11 @@ int _printf(const char *format, ...)
 					handles++;
 				}
 				if (handles->handled_format == '\0')
-				{
 					_putchar('%'), _putchar(*format), total += 2;
-				}
 			}
 		}
 		else
-		{
 			_putchar(*format), total++;
-		}
 		format++;
 	}
 	va_end(args);
